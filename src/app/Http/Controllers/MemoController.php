@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class MemoController extends Controller
 {
-    public function show()
+    public function index()
     {
         return view('memo.index', []);
     }

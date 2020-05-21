@@ -27,6 +27,6 @@ Route::prefix('auth')->namespace('Auth')->group(function (){
     Route::get('/logout', 'LoginController@logout');
 });
 
-Route::prefix('memo')->group(function () {
-    Route::get('/', 'MemoController@show')->name('memo.index');
+Route::prefix('memo')->name('memo.')->group(function (){
+    Route::get('/', 'MemoController@index')->name('index');
 });
