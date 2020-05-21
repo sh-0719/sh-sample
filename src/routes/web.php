@@ -11,6 +11,7 @@
 |
 */
 
+// route名'login'と'logout'が2つできてしまうので、後で別の実装方法にする
 Auth::routes();
 
 Route::get('/', function () {
@@ -24,9 +25,9 @@ Route::get('/home', function () {
 Route::prefix('auth')->namespace('Auth')->group(function (){
     Route::get('/register', 'RegisterController@showRegistrationForm');
     Route::post('/register', 'RegisterController@register');
-    Route::get('/login', 'LoginController@showLoginForm');
+    Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/login', 'LoginController@login');
-    Route::get('/logout', 'LoginController@logout');
+    Route::get('/logout', 'LoginController@logout')->name('logout');
 });
 
 Route::prefix('memo')->name('memo.')->group(function (){
