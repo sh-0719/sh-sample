@@ -18,7 +18,7 @@ class CreateMemosTable extends Migration
             $table->unsignedInteger('user_id')->comment('ユーザーID');
             $table->string('content', 255)->nullable()->comment('内容');
             $table->softDeletes()->comment('レコード削除日時');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('レコード作成日時');
+            $table->timestamp('created_at')->comment('レコード作成日時');
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'))->comment('レコード更新日時');
 
             $table->foreign('user_id')
