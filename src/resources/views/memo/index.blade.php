@@ -3,7 +3,8 @@
     <meta charset="utf-8">
 </head>
 <body>
-{{ \Auth::user()->name }}さんのメモ一覧です。
+<div>{{ \Auth::user()->name }}さんのメモページです。</div>
+
 <table>
     <tr>
         <th>内容</th>
