@@ -5,6 +5,11 @@
 <body>
 <div>{{ \Auth::user()->name }}さんのメモページです。</div>
 
+{{ Form::open(['route' => 'memo.store']) }}
+{{ Form::text('content') }}
+{{ Form::submit('追加') }}
+{{ Form::close() }}
+
 <table>
     <tr>
         <th>内容</th>
