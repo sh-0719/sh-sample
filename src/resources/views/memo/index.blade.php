@@ -5,6 +5,7 @@
 <body>
 <div>{{ \Auth::user()->name }}さんのメモページです。</div>
 
+<!-- //TODO:モデルベースのフォームに修正する -->
 {{ Form::open(['route' => 'memo.store']) }}
 {{ Form::text('content') }}
 {{ Form::submit('追加') }}

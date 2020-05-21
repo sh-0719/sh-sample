@@ -17,6 +17,7 @@ class MemoController extends Controller
     // フォームを受け取るクラスを追加
     public function store(Request $request)
     {
+        // TODO: UserクラスにHasManyでMemoクラスと繋いで、$user->Memos()->create([ に修正する
         $user = \Auth::user();
         $memo = new Memo();
         $memo->create([
