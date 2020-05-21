@@ -26,4 +26,16 @@ class MemoController extends Controller
         ]);
         return redirect()->route('memo.index');
     }
+
+    public function destroy(int $id, Request $request)
+    {
+        // TODO: UserクラスをHasManyでMemoと繋いで、 $user->Memos()->findOrFail($id) でMemoを取得するように修正する
+        $user = \Auth::user();
+        $memo = Memo::where('id', $id)->where('user_id',$user->id)->get();
+        $memo[0]->delete();
+
+        // TODO: 操作内容のメッセージをリダイレクト後の画面に表示
+
+        return redirect()->route('memo.index');
+    }
 }

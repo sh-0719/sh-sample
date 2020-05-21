@@ -33,4 +33,5 @@ Route::prefix('auth')->namespace('Auth')->group(function (){
 Route::prefix('memo')->name('memo.')->middleware('auth')->group(function (){
     Route::get('/', 'MemoController@index')->name('index');
     Route::post('/store', 'MemoController@store')->name('store');
+    Route::delete('/{id}/destroy', 'MemoController@destroy')->name('destroy');
 });

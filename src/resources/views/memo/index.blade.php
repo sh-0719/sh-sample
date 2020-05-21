@@ -17,10 +17,13 @@
         <th>作成日時</th>
     </tr>
     @foreach($memos as $memo)
+        {{ Form::open(['url' => route('memo.destroy', $memo->id), 'method' => 'delete']) }}
         <tr>
             <td>{{ $memo->content }}</td>
             <td>{{ $memo->created_at }}</td>
+            <td>{{ Form::submit('削除') }}</td>
         </tr>
+        {{ Form::close() }}
     @endforeach
 </table>
 
