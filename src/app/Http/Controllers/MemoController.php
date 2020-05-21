@@ -7,16 +7,6 @@ use Illuminate\Http\Request;
 
 class MemoController extends Controller
 {
-
-
-    /**
-     * MemoController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $visitorId = \Auth::user()->id;
