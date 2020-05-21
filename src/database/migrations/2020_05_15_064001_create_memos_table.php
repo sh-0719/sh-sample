@@ -15,7 +15,7 @@ class CreateMemosTable extends Migration
     {
         Schema::create('memos', function (Blueprint $table) {
             $table->increments('id')->comment('ID');
-            $table->unsignedInteger('user_id')->comment('ユーザーID');
+            $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->string('content', 255)->nullable()->comment('内容');
             $table->softDeletes()->comment('レコード削除日時');
             $table->timestamp('created_at')->default(null)->nullable()->comment('レコード作成日時');
