@@ -6,7 +6,8 @@
 こんにちは！
 @if(Auth::check())
     {{ \Auth::user()->name }}さん<br>
-    <a href="/auth/logout">ログアウト</a>
+    <div><a href="/memo">メモ機能</a></div>
+    <div><a href="/auth/logout">ログアウト</a></div>
 @else
     ゲストさん<br>
     <a href="/auth/login">ログイン</a><br>
