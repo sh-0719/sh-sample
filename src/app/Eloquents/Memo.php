@@ -10,6 +10,6 @@ class Memo extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'content'
+        'user_id', 'content', 'created_at'
     ];
 }

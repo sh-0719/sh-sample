@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Eloquents\Memo;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class MemoController extends Controller
 {
@@ -23,6 +24,7 @@ class MemoController extends Controller
         $memo->create([
             'user_id' => $user->id,
             'content' => $request->input('content'),
+            'created_at' => Carbon::now(),
         ]);
         return redirect()->route('memo.index');
     }
