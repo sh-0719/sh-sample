@@ -10,19 +10,16 @@ class MemoController extends Controller
 {
     public function index()
     {
-        $visitorId = \Auth::user()->id;
-        $visitorMemos = Memo::where('user_id', $visitorId)->get();
+        $user = \Auth::user();
+        $visitorMemos =$user->memos()->get();
         return view('memo.index', ['memos' => $visitorMemos]);
     }
 
     // フォームを受け取るクラスを追加
     public function store(Request $request)
     {
-        // TODO: UserクラスにHasManyでMemoクラスと繋いで、$user->Memos()->create([ に修正する
         $user = \Auth::user();
-        $memo = new Memo();
-        $memo->create([
-            'user_id' => $user->id,
+        $user->memos()->create([
             'content' => $request->input('content'),
             // mysql5.5対応。複数カラムのdefaultにCURRENT_TIMESTAMPが使えない
             'created_at' => Carbon::now(),
@@ -32,10 +29,9 @@ class MemoController extends Controller
 
     public function destroy(int $id, Request $request)
     {
-        // TODO: UserクラスをHasManyでMemoと繋いで、 $user->Memos()->findOrFail($id) でMemoを取得するように修正する
         $user = \Auth::user();
-        $memo = Memo::where('id', $id)->where('user_id',$user->id)->get();
-        $memo[0]->delete();
+        // TODO: findではなく、findOrFailにして、Failの場合は誤った操作〜等の例外対応
+        $user->memos()->find($id)->delete();
 
         // TODO: 操作内容のメッセージをリダイレクト後の画面に表示
 
