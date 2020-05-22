@@ -52,6 +52,10 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            // timestamp型対応（datetime型は対応できていない）
+            // MySQLのTZはUTC、LaravelのTZはJSTのため、+09:00の補正を入れる
+            // ReadはJST、WriteはUTCとなる
+            'timezone' => '+09:00',
         ],
 
         'pgsql' => [
