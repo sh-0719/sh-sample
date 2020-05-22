@@ -24,6 +24,7 @@ class MemoController extends Controller
         $memo->create([
             'user_id' => $user->id,
             'content' => $request->input('content'),
+            // mysql5.5対応。複数カラムのdefaultにCURRENT_TIMESTAMPが使えない
             'created_at' => Carbon::now(),
         ]);
         return redirect()->route('memo.index');
