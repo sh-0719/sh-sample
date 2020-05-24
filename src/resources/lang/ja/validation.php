@@ -116,6 +116,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        // メモ機能
+        'content' => '内容',
+    ],
 
 ];
