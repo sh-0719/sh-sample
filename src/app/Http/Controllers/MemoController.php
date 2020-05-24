@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eloquents\Memo;
+use App\Http\Requests\Memo\StorePost;
 use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -18,7 +19,7 @@ class MemoController extends Controller
     }
 
     // フォームを受け取るクラスを追加
-    public function store(Request $request)
+    public function store(StorePost $request)
     {
         /** @var User|null $user */
         $user = \Auth::user();
