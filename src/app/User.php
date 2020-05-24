@@ -3,9 +3,22 @@
 namespace App;
 
 use App\Eloquents\Memo;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * @package App
+ *
+ * @property int    $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ *
+ * @property-read Collection|Memo[] $memos
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -28,6 +41,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function memos()
     {
         return $this->hasMany(Memo::class);

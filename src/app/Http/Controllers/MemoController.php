@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eloquents\Memo;
+use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -10,14 +11,16 @@ class MemoController extends Controller
 {
     public function index()
     {
+        /** @var User|null $user */
         $user = \Auth::user();
         $visitorMemos =$user->memos()->get();
-        return view('memo.index', ['memos' => $visitorMemos]);
+        return view('memo.index', ['userName' => $user->name, 'memos' => $visitorMemos]);
     }
 
     // フォームを受け取るクラスを追加
     public function store(Request $request)
     {
+        /** @var User|null $user */
         $user = \Auth::user();
         $user->memos()->create([
             'content' => $request->input('content'),
@@ -29,6 +32,7 @@ class MemoController extends Controller
 
     public function destroy(int $id, Request $request)
     {
+        /** @var User|null $user */
         $user = \Auth::user();
         // TODO: findではなく、findOrFailにして、Failの場合は誤った操作〜等の例外対応
         $user->memos()->find($id)->delete();
