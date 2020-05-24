@@ -3,7 +3,7 @@
     <meta charset="utf-8">
 </head>
 <body>
-<div>{{ \Auth::user()->name }}さんのメモページです。</div>
+<div>{{ $userName }}さんのメモページです。</div>
 
 <!-- //TODO:モデルベースのフォームに修正する -->
 {{ Form::open(['route' => 'memo.store']) }}
@@ -16,10 +16,14 @@
         <th>内容</th>
         <th>作成日時</th>
     </tr>
+    @php
+        /** @var \App\Eloquents\Memo $memo */
+    @endphp
     @foreach($memos as $memo)
         {{ Form::open(['url' => route('memo.destroy', $memo->id), 'method' => 'delete']) }}
         <tr>
             <td>{{ $memo->content }}</td>
+            <!-- TODO: 作成日時の表記をyyyy年mm月dd日 hh:mm:ssにする -->
             <td>{{ $memo->created_at }}</td>
             <td>{{ Form::submit('削除') }}</td>
         </tr>
