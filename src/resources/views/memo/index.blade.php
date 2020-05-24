@@ -7,6 +7,13 @@
 
 <!-- //TODO:モデルベースのフォームに修正する -->
 {{ Form::open(['route' => 'memo.store']) }}
+@if($errors->has('content'))
+    <ul>
+    @foreach($errors->get('content') as $message)
+        <li>{{ $message }}</li>
+    @endforeach
+    </ul>
+@endif
 {{ Form::text('content') }}
 {{ Form::submit('追加') }}
 {{ Form::close() }}
