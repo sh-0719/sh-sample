@@ -9,6 +9,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import FooBar from "../vue/components/molecules/FooBar";
+import MemoTable from "../vue/components/molecules/MemoTable";
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -22,5 +23,6 @@ const app = new Vue({
     el: '#app',
     components: {
         FooBar,
+        MemoTable,
     },
 });

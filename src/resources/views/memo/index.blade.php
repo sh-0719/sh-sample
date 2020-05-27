@@ -1,6 +1,9 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 <div id="app">
@@ -19,27 +22,9 @@
     {{ Form::submit('追加') }}
     {{ Form::close() }}
 
-    <foo-bar></foo-bar>
-
-    <table>
-        <tr>
-            <th>内容</th>
-            <th>作成日時</th>
-        </tr>
-        @php
-            /** @var \App\Eloquents\Memo $memo */
-        @endphp
-        @foreach($memos as $memo)
-            {{ Form::open(['url' => route('memo.destroy', $memo->id), 'method' => 'delete']) }}
-            <tr>
-                <td>{{ $memo->content }}</td>
-                <!-- TODO: 作成日時の表記をyyyy年mm月dd日 hh:mm:ssにする -->
-                <td>{{ $memo->created_at }}</td>
-                <td>{{ Form::submit('削除') }}</td>
-            </tr>
-            {{ Form::close() }}
-        @endforeach
-    </table>
+<!-- todo: ヘッダー項目名を3つ渡してヘッダーを作るコンポーネント -->
+<!-- todo: ヘッダー項目名を配列で渡して、値の数だけ列があるヘッダーを作るコンポーネント -->
+    <memo-table :memos="{{ $memos }}" :appurl="'{{ env('APP_URL') }}'"></memo-table>
 </div>
 {{ Html::script(mix('js/app.js')) }}
 
