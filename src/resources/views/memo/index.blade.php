@@ -17,16 +17,17 @@
                 <li>{{ $message }}</li>
             @endforeach
         </ul>
-    @endif
-    {{ Form::text('content') }}
-    {{ Form::submit('追加') }}
-    {{ Form::close() }}
+@endif
+{{ Form::text('content') }}
+{{ Form::submit('追加') }}
+{{ Form::close() }}
 
-<!-- todo: ヘッダー項目名を3つ渡してヘッダーを作るコンポーネント -->
-<!-- todo: ヘッダー項目名を配列で渡して、値の数だけ列があるヘッダーを作るコンポーネント -->
-    <memo-table :memos="{{ $memos }}" :appurl="'{{ env('APP_URL') }}'"></memo-table>
+    <!-- todo: ヘッダー項目名を3つ渡してヘッダーを作るコンポーネント -->
+    <!-- todo: ヘッダー項目名を配列で渡して、値の数だけ列があるヘッダーを作るコンポーネント -->
+    <div id="memo-table">
+        <memo-table :memos="{{ $memos }}" :appurl="'{{ env('APP_URL') }}'"></memo-table>
+    </div>
 </div>
-{{ Html::script(mix('js/app.js')) }}
-
+{{ Html::script(mix('js/memo/index.js')) }}
 </body>
 </html>
