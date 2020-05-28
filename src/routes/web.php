@@ -22,7 +22,14 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::prefix('auth')->namespace('Auth')->group(function (){
+Route::prefix('array_to_csv')->name('array_to_csv.')->group(function () {
+    Route::get('/', 'ArrayToCsvController@index')->name('index');
+    Route::post('/', 'ArrayToCsvController@convertAndDownload')->name('convert_and_download');
+});
+
+
+
+Route::prefix('auth')->namespace('Auth')->group(function () {
     Route::get('/register', 'RegisterController@showRegistrationForm');
     Route::post('/register', 'RegisterController@register');
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
@@ -30,7 +37,7 @@ Route::prefix('auth')->namespace('Auth')->group(function (){
     Route::get('/logout', 'LoginController@logout')->name('logout');
 });
 
-Route::prefix('memo')->name('memo.')->middleware('auth')->group(function (){
+Route::prefix('memo')->name('memo.')->middleware('auth')->group(function () {
     Route::get('/', 'MemoController@index')->name('index');
     Route::post('/store', 'MemoController@store')->name('store');
     Route::delete('/{id}/destroy', 'MemoController@destroy')->name('destroy');
