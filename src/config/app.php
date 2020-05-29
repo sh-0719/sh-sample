@@ -171,6 +171,9 @@ return [
         // Laravel Collective
         Collective\Html\HtmlServiceProvider::class,
 
+        // DebugBar
+        Barryvdh\Debugbar\ServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -232,6 +235,9 @@ return [
         // Laravel Collective Facade
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        // Debugbar Facade
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
