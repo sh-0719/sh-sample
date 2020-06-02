@@ -30,6 +30,10 @@ class ArrayToCsvController extends Controller
         // todo: DLできるcsvをDBに保管しておいて、自由にDLできるようにする？（ログインしてる場合だけ使える機能として）
         // todo: メソッド内の処理を別クラスに分ける（json対応時など、処理が複雑化した際にも見通しがよくなる）
 
+        // todo: []の中が、正しく連想配列の形になっているかチェック
+        $matchResult = preg_match('/\[(.|\s)+]/', $request->target);
+        dd($matchResult);
+
         $file = $request->file('file');
         $fileNameWithoutExtension = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $target = require $file->getRealPath();

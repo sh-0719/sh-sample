@@ -17,8 +17,8 @@
         （アップロードしたファイル名が全てのキーの先頭として扱われます）
     </p>
 
-    {{ Form::open(['route' => 'array_to_csv.convert_and_download', 'files' => true]) }}
-    <div>{{ Form::file('file') }}</div>
+    {{ Form::open(['route' => 'array_to_csv.convert_and_download']) }}
+    <div>{{ Form::textarea('target') }}</div>
     <div class="mt-3">{{ Form::submit('Convert & DL') }}</div>
     {{ Form::close() }}
 
