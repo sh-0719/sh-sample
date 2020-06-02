@@ -24,6 +24,8 @@ class Handler extends ExceptionHandler
     protected $dontFlash = [
         'password',
         'password_confirmation',
+        // csrf tokenをregenerateした際、laravel collectiveが古いtokenのままhiddenを生成してしまうことの対応
+        '_token',
     ];
 
     /**
