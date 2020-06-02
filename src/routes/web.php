@@ -39,6 +39,9 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
 
 Route::prefix('memo')->name('memo.')->middleware('auth')->group(function () {
     Route::get('/', 'MemoController@index')->name('index');
+    // todo: メモの新規作成はmemo/storeじゃなくて、memoにpostメソッドでアクセスするurlに変更する。
     Route::post('/store', 'MemoController@store')->name('store');
+    Route::get('/{id}/edit', 'MemoController@edit')->name('edit');
+    Route::put('/{id}/update', 'MemoController@update')->name('update');
     Route::delete('/{id}/destroy', 'MemoController@destroy')->name('destroy');
 });

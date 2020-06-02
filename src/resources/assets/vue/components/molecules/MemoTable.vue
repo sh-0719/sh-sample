@@ -5,6 +5,7 @@
             <th>内容</th>
             <th>作成日時</th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -12,6 +13,11 @@
             <td>{{ memo.content }}</td>
             <!-- TODO: 作成日時の表記をyyyy年mm月dd日 hh:mm:ssにする -->
             <td>{{ memo.created_at }}</td>
+            <td>
+                <a :href="getEditUrl(memo.id)">
+                    <button type="submit" class="btn btn-outline-primary">編集</button>
+                </a>
+            </td>
             <td>
                 <form method="post" :action="getDestroyUrl(memo.id)" accept-charset="UTF-8">
                     <input type="hidden" name="_token" :value="csrf">
@@ -45,6 +51,9 @@
         methods: {
             getDestroyUrl(id) {
                 return this.appurl + '/memo/' + id + '/destroy';
+            },
+            getEditUrl(id) {
+                return this.appurl + '/memo/' + id  + '/edit';
             }
         }
     }

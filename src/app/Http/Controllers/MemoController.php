@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Eloquents\Memo;
 use App\Http\Requests\Memo\StorePost;
+use App\Http\Requests\Memo\UpdatePost;
 use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -28,6 +29,29 @@ class MemoController extends Controller
             // mysql5.5対応。複数カラムのdefaultにCURRENT_TIMESTAMPが使えない
             'created_at' => Carbon::now(),
         ]);
+        return redirect()->route('memo.index');
+    }
+
+    public function edit($id)
+    {
+        /** @var User|null $user */
+        $user = \Auth::user();
+        $memo =$user->memos()->findOrFail($id);
+        return view(
+            'memo.edit',
+            [
+                'userName' => $user->name,
+                'memo' => $memo
+            ]
+        );
+    }
+
+    public function update(int $id, UpdatePost $request)
+    {
+        // todo: 排他制御
+        /** @var User|null $user */
+        $user = \Auth::user();
+        $user->memos()->findOrFail($id)->fill(['content' => $request->input('content')])->save();
         return redirect()->route('memo.index');
     }
 
