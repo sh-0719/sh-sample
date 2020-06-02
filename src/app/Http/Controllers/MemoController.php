@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eloquents\Memo;
+use App\Exceptions\AppException;
 use App\Http\Requests\Memo\StorePost;
 use App\Http\Requests\Memo\UpdatePost;
 use App\User;
@@ -51,7 +52,14 @@ class MemoController extends Controller
         // todo: 排他制御
         /** @var User|null $user */
         $user = \Auth::user();
-        $user->memos()->findOrFail($id)->fill(['content' => $request->input('content')])->save();
+        $memo = $user->memos()->findOrFail($id)->fill(['content' => $request->input('content')]);
+
+        \DB::transaction(function () use ($memo) {
+            if (!$memo->update()) {
+                throw new AppException('Failed to update memo. It is an unexpected fatal situation.');
+            }
+        });
+
         return redirect()->route('memo.index');
     }
 
