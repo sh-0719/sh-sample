@@ -13,6 +13,5 @@
     <a href="/auth/login">ログイン</a><br>
     <a href="/auth/register">会員登録</a>
 @endif
-<div><a href="/array_to_csv">連想配列のキー連結機能</a></div>
 </body>
 </html>
